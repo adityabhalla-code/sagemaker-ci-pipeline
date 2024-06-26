@@ -148,10 +148,10 @@ def get_pipeline(
     role=None,
     default_bucket=None,
     input_data_url=None,
-    bucket_prefix="siemens-poc/xgboost",
-    model_package_group_name="siemens-poc-xgboost-model-group",
-    pipeline_name="siemens-poc-pipeline",
-    base_job_prefix="siemens-poc-pipeline",
+    bucket_prefix="bits-webminar-june-24",
+    model_package_group_name="bits-webminar-june-24-xgboost-model-group",
+    pipeline_name="bits-poc-pipeline",
+    base_job_prefix="bits-poc-pipeline",
     processing_instance_type="ml.t3.medium",
     training_instance_type="ml.m5.xlarge",
     test_score_threshold=0.75,
@@ -228,9 +228,11 @@ def get_pipeline(
     
     # processing step for feature engineering
     sklearn_processor = SKLearnProcessor(
-        framework_version="0.23-1",
+        framework_version="1.0-1",
         role=role,
-        instance_type=process_instance_type_param,
+        # instance_type=process_instance_type_param,
+        instance_type=processing_instance_type,
+        
         instance_count=1,
         base_job_name=f"{pipeline_name}/preprocess",
         sagemaker_session=session,
@@ -275,7 +277,9 @@ def get_pipeline(
     estimator = sagemaker.estimator.Estimator(
         image_uri=xgboost_image_uri,
         role=role, 
-        instance_type=train_instance_type_param,
+        # instance_type=train_instance_type_param,
+        instance_type=training_instance_type,
+        
         instance_count=train_instance_count_param,
         output_path=output_s3_url,
         sagemaker_session=session,
