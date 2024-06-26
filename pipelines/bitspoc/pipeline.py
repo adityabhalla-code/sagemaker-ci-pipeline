@@ -148,7 +148,7 @@ def get_pipeline(
     role=None,
     default_bucket=None,
     input_data_url=None,
-    bucket_prefix="bits-webminar-june-24/",
+    bucket_prefix="bits-webminar-june-24",
     model_package_group_name="bits-webminar-june-24-xgboost-model-group",
     pipeline_name="bits-poc-pipeline",
     base_job_prefix="bits-poc-pipeline",
