@@ -278,7 +278,7 @@ def get_pipeline(
         image_uri=xgboost_image_uri,
         role=role, 
         # instance_type=train_instance_type_param,
-        instance_type=train_instance_type,
+        instance_type=training_instance_type,
         
         instance_count=train_instance_count_param,
         output_path=output_s3_url,
